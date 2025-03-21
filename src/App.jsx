@@ -2,7 +2,8 @@
 import './App.css'
 import Gallery from "./components/Gallery.jsx";
 import Search from "@/components/Search.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 function App() {
 
@@ -13,6 +14,14 @@ function App() {
         })
         setPhotos(returnedPhotos);
     }
+
+    useEffect(() => {
+        axios.get("https://picsum.photos/v2/list?page=3").then((response) => {
+            setPhotos(response.data);
+        })
+    })
+
+
 
     const photo_data = [
         {
